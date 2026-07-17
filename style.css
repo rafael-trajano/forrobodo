@@ -330,7 +330,7 @@ main {
 .menu-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(25, 29, 25, 0.6);
+    background-color: rgba(25, 25, 25, 0.5);
     z-index: 990;
     opacity: 0;
     pointer-events: none;
@@ -409,11 +409,6 @@ main {
     font-size: 0.7rem;
     background-color: var(--cor-verde);
     color: var(--cor-texto-claro);
-}
-
-.nav-cta .cta:hover {
-    background-color: var(--cor-verde-claro);
-    color: var(--cor-branca);
 }
 
 /* 7. SECTIONS */
@@ -561,12 +556,12 @@ main {
     background-color: var(--cor-surface);
     color: var(--cor-on-surface);
     max-width: 100%;
-    padding: 0;
+    padding: 0 0 80px;
 }
 
 .produtos-header-bloco {
     width: 100%;
-    padding: 130px 80px 40px;
+    padding: 130px 80px 56px;
 }
 
 .produtos-header {
@@ -585,138 +580,137 @@ main {
     font-size: 2rem;
 }
 
-.sabor-bloco {
-    width: 100%;
-    padding: 80px;
-    background-color: var(--cor-surface-container);
-}
-
-.sabor-bloco-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 440px;
-    grid-template-areas:
-        "card foto"
-        "cta  foto";
-    column-gap: 64px;
-    row-gap: 28px;
-    align-items: center;
-}
-
-.sabor-bloco.inverso .sabor-bloco-inner {
-    grid-template-columns: 440px 1fr;
-    grid-template-areas:
-        "foto card"
-        "foto cta";
-}
-
-.sabor-card {
-    grid-area: card;
-}
-
-.sabor-subtitulo {
-    display: block;
-    font-family: var(--fonte-ui);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--sabor-accent, var(--cor-verde));
-    margin-bottom: 14px;
-}
-
-.sabor-cta-wrap {
-    grid-area: cta;
-}
-
-.sabor-card h3 {
-    font-family: var(--fonte-ui);
-    font-weight: 600;
-    font-size: 2.1rem;
-    line-height: 1.15;
-    color: var(--cor-verde);
-    margin-bottom: 20px;
-}
-
-.sabor-card p {
+.produtos-sub {
+    margin-top: 12px;
     font-family: var(--fonte-ui);
     font-size: 0.95rem;
     color: var(--cor-on-surface-dim);
     line-height: 1.8;
-    max-width: 420px;
 }
 
-.sabor-cta {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: var(--sabor-accent, var(--cor-verde));
-    color: var(--sabor-texto, var(--cor-branca));
-    font-family: var(--fonte-ui);
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    border-radius: var(--radius-smooth);
-    transition: transform var(--transition), filter var(--transition);
-}
+/* Grade de cards de sabor */
 
-.sabor-cta:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-}
-
-.sabor-foto-wrap {
-    grid-area: foto;
-    width: 100%;
-    max-width: 440px;
+.produtos-grid {
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 0 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
 }
 
-.sabor-foto-container {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
+.sabor-card-grid {
+    background-color: var(--cor-surface-container);
     border-radius: var(--radius-global);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.sabor-foto-container img {
+.sabor-card-grid:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.sabor-card-foto {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-color: var(--sabor-cor-1, var(--cor-surface-container));
+    overflow: hidden;
+}
+
+.sabor-card-foto img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+.sabor-card-conteudo {
+    padding: 24px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.sabor-card-conteudo .sabor-subtitulo {
+    margin-bottom: 8px;
+    font-size: 0.66rem;
+    color: var(--sabor-accent);
+}
+
+.sabor-card-conteudo h3 {
+    font-family: var(--fonte-ui);
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    color: var(--cor-on-surface);
+}
+
+.sabor-info {
+    display: block;
+    font-family: var(--fonte-ui);
+    font-size: 0.72rem;
+    color: var(--sabor-accent);
+    margin: 6px 0 16px;
+}
+
+.sabor-card-conteudo p {
+    font-family: var(--fonte-ui);
+    font-size: 0.66rem;
+    color: var(--cor-on-surface-dim);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.sabor-cta-outline {
+    display: inline-block;
+    margin-top: auto;
+    padding: 13px 24px;
+    background-color: transparent;
+    border: 1.5px solid var(--sabor-accent, var(--cor-verde));
+    color: var(--sabor-accent, var(--cor-verde));
+    font-family: var(--fonte-ui);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-align: center;
+    border-radius: var(--radius-smooth);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.sabor-cta-outline:hover {
+    background-color: var(--sabor-accent, var(--cor-verde));
+    color: var(--sabor-texto, var(--cor-branca));
+}
+
 .sabor-cristal {
     --sabor-cor-1: #E0E0E0;
     --sabor-cor-2: #F5F5F5;
-    --sabor-accent: var(--cor-verde);
-    --sabor-texto: var(--cor-branca);
-    padding-top: 40px;
-    background-color: var(--cor-surface);
+    --sabor-accent: #41423f;
+    --sabor-texto: var(--cor-surface);
 }
 
 .sabor-morango-kiwi {
-    --sabor-cor-1: #DB3A56;
+    --sabor-cor-1: #FBE8EB;
     --sabor-cor-2: #76B041;
     --sabor-accent: #DB3A56;
     --sabor-texto: var(--cor-branca);
-    background-color: #FBE8EB;
 }
 
 .sabor-mel-limao {
-    --sabor-cor-1: #FFC300;
+    --sabor-cor-1: #FDFBE2;
     --sabor-cor-2: #FFEE32;
-    --sabor-accent: #FFC300;
-    --sabor-texto: var(--cor-on-surface);
-    background-color: #FDFBE2;
+    --sabor-accent: #C9970C;
+    --sabor-texto: var(--cor-surface);
 }
 
 .sabor-abacaxi-hortela {
-    --sabor-cor-1: var(--cor-verde);
+    --sabor-cor-1: #E9FBED;
     --sabor-cor-2: #CCFF33;
     --sabor-accent: var(--cor-verde);
     --sabor-texto: var(--cor-branca);
-    background-color: #E9FBED;
 }
 
 /* Visitação */
@@ -1029,8 +1023,9 @@ main {
         padding: 100px 48px 40px;
     }
 
-    .sabor-bloco {
-        padding: 60px 48px;
+    .produtos-grid {
+        padding-left: 48px;
+        padding-right: 48px;
     }
 
     .sobre-conteudo {
@@ -1040,26 +1035,6 @@ main {
 
     .localizacao-conteudo {
         gap: 48px;
-    }
-
-    .sabor-bloco-inner,
-    .sabor-bloco.inverso .sabor-bloco-inner {
-        grid-template-columns: 1fr 360px;
-        grid-template-areas:
-            "card foto"
-            "cta  foto";
-        column-gap: 48px;
-    }
-
-    .sabor-bloco.inverso .sabor-bloco-inner {
-        grid-template-columns: 360px 1fr;
-        grid-template-areas:
-            "foto card"
-            "foto cta";
-    }
-
-    .sabor-foto-wrap {
-        max-width: 360px;
     }
 }
 
@@ -1103,7 +1078,7 @@ main {
     }
 
     .home-titulo {
-        font-size: 2rem;
+        font-size: 2.6rem;
         text-align: center;
     }
 
@@ -1137,7 +1112,7 @@ main {
     .visitacao-texto h2,
     .localizacao-texto h2,
     .faq-header h2 {
-        font-size: 1.6rem;
+        font-size: 1.9rem;
     }
 
     .home-eyebrow,
@@ -1149,48 +1124,24 @@ main {
         font-size: 0.8rem;
     }
 
-    .produtos-header,
-    .faq-header {
-        text-align: left;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .produtos-header-bloco {
-        padding: 50px 20px 0px;
+        padding: 50px 24px 32px;
     }
 
-    .sabor-bloco {
-        padding: 60px 24px;
-    }
-
-    .sabor-bloco-inner,
-    .sabor-bloco.inverso .sabor-bloco-inner {
+    .produtos-grid {
+        padding-left: 36px;
+        padding-right: 36px;
         grid-template-columns: 1fr;
-        grid-template-areas:
-            "card"
-            "foto"
-            "cta";
-        gap: 44px;
+        gap: 32px;
     }
 
-    .sabor-card h3,
-    .sabor-subtitulo,
-    .sabor-card p {
-        text-align: center;
+    .sabor-card-foto {
+        aspect-ratio: 4 / 3;
     }
 
-    .sabor-card p {
-        margin: 0 auto;
-    }
-
-    .sabor-card h3 {
-        font-size: 1.6rem;
-        margin-bottom: 24px;
-    }
-
-    .sabor-cta-wrap {
-        text-align: center;
+    .sabor-cta-outline {
+        background-color: var(--sabor-accent, var(--cor-verde));
+        color: var(--sabor-texto, var(--cor-branca));
     }
 
     .faq-header {
