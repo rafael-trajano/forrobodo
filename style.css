@@ -213,6 +213,22 @@ main {
     letter-spacing: 0.05em;
 }
 
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 10px;
+}
+.footer-social .icone {
+    font-size: 1.25rem;
+    color: var(--cor-texto-claro-dim);
+    transition: color var(--transition), transform var(--transition);
+}
+.footer-social a:hover .icone {
+    color: var(--cor-verde);
+    transform: translateY(-2px);
+}
+
 /* 6. COMPONENTES */
 
 /* Logo */
@@ -229,7 +245,7 @@ main {
 }
 
 .nav-logo {
-    width: 85px;
+    width: 95px;
     max-height: 45px;
     display: block;
 }
@@ -241,11 +257,29 @@ main {
     opacity: 0.9;
 }
 
-/* CTA */
+.icone {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+.icone-whatsapp  { 
+    -webkit-mask-image: url("contato/whatsapp.svg");  mask-image: url("contato/whatsapp.svg"); 
+}
+.icone-instagram { 
+    -webkit-mask-image: url("contato/instagram.svg"); mask-image: url("contato/instagram.svg"); 
+}
+.icone-envelope  { 
+    -webkit-mask-image: url("contato/envelope.svg");  mask-image: url("contato/envelope.svg"); 
+}
 
-/* Estilos compartilhados entre .cta, .cta-reservar e .cta-como-chegar
-   (unificados para evitar repetição; cada classe mantém abaixo apenas
-   o que é específico dela — padding, tamanho, etc.) */
 .cta,
 .cta-reservar,
 .cta-como-chegar {
@@ -396,19 +430,23 @@ main {
     padding-left: 28px;
 }
 
-.nav-cta {
-    padding: 18px 18px 29px;
+.nav-social {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 24px 20px 32px;
     margin-top: auto;
+    border-top: 1px solid rgba(178, 134, 0, 0.2);
     flex-shrink: 0;
-    background-color: var(--cor-surface);
 }
-
-.nav-cta .cta {
-    display: block;
-    width: 100%;
-    font-size: 0.7rem;
-    background-color: var(--cor-verde);
-    color: var(--cor-texto-claro);
+.nav-social .icone {
+    font-size: 1.4rem;
+    color: var(--cor-verde);
+    transition: color var(--transition), transform var(--transition);
+}
+.nav-social a:hover .icone {
+    color: var(--cor-verde-claro);
+    transform: translateY(-3px);
 }
 
 /* 7. SECTIONS */
