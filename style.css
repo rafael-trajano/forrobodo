@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*
-ARQUITETURA CSS — FORROBODÓ JUNINO
+ARQUITETURA CSS — FORROBODÓ 
 1. ROOT
 2. RESET
 3. BASE
@@ -472,9 +472,6 @@ main {
     padding: 60px 64px 60px 80px;
 }
 
-/* Estilos compartilhados dos "eyebrows" (textos pequenos de destaque
-   presentes em várias seções). Cada classe abaixo mantém apenas o que
-   é específico dela — tamanho, peso, transformação, espaçamento etc. */
 .home-eyebrow,
 .sobre-eyebrow,
 .produtos-eyebrow,
@@ -484,6 +481,17 @@ main {
     font-family: var(--fonte-ui);
     letter-spacing: 0.2em;
     color: var(--cor-vinho-claro);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.sobre-eyebrow,
+.produtos-eyebrow,
+.visitacao-eyebrow,
+.localizacao-eyebrow,
+.faq-eyebrow {
+    font-size: 0.78rem;          
+    margin-bottom: 0px;          
 }
 
 .home-eyebrow {
@@ -557,14 +565,13 @@ main {
 }
 
 .sobre-eyebrow {
-    font-size: 0.72rem;
     font-weight: 500;
+    margin-bottom: -16px;
 }
 
 .sobre-texto h2 {
     font-size: 2rem;
     font-weight: 400;
-    margin-top: -10px;
 }
 
 .sobre-texto p {
@@ -608,14 +615,9 @@ main {
     text-align: center;
 }
 
-.produtos-eyebrow {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-}
-
 .produtos-header h2 {
     font-size: 2rem;
+    font-weight: 400;
 }
 
 .produtos-sub {
@@ -625,8 +627,6 @@ main {
     color: var(--cor-on-surface-dim);
     line-height: 1.8;
 }
-
-/* Grade de cards de sabor */
 
 .produtos-grid {
     max-width: 1400px;
@@ -778,14 +778,13 @@ main {
 }
 
 .visitacao-eyebrow {
-    font-size: 0.72rem;
     font-weight: 500;
-    text-transform: uppercase;
+    margin-bottom: -14px;
 }
 
 .visitacao-texto h2 {
     font-size: 2rem;
-    margin-top: -9px;
+    font-weight: 400;
 }
 
 .visitacao-texto p {
@@ -821,14 +820,6 @@ main {
     grid-template-columns: 1.1fr 1.2fr;
     gap: 80px;
     align-items: center;
-}
-
-.localizacao-eyebrow {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-bottom: 6px;
 }
 
 .localizacao-texto h2 {
@@ -906,14 +897,6 @@ main {
     max-width: 760px;
     margin: 0 auto 56px;
     text-align: center;
-}
-
-.faq-eyebrow {
-    display: block;
-    font-size: 0.72rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    margin-bottom: 6px;
 }
 
 .faq-header h2 {
