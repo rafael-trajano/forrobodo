@@ -1019,6 +1019,28 @@ main {
 
 /* 9. Responsividade */
 
+@media (min-width: 1440px) {
+    .home-container {
+        max-width: 1560px;
+        grid-template-columns: 1fr 520px;
+        gap: 64px;
+    }
+
+    .home-titulo {
+        font-size: 3.1rem;
+        max-width: 660px;
+    }
+
+    .home-desc {
+        font-size: 1.05rem;
+        max-width: 540px;
+    }
+
+    .home-foto-container {
+        max-width: 520px;
+    }
+}
+
 @media (max-width: 1024px) {
     .home {
         grid-template-columns: 1fr 360px;
