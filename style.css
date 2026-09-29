@@ -321,24 +321,24 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 10px;
-    transition: transform var(--transition);
+    gap: 7px;
+    padding: 8px;
+    transition: transform 0.2s ease;
 }
 
 .menu-hamburguer:hover {
     transform: translateY(-2px);
 }
 
-.menu-hamburguer:hover .hamburguer-linha {
-    background-color: var(--cor-verde);
-}
-
 .hamburguer-linha {
     display: block;
-    width: 26px;
+    width: 28px;
     height: 2px;
-    background-color: var(--cor-on-surface);
+    background-color: var(--cor-verde);
+    border-radius: 2px;
+    /* cada linha vira uma camada própria, que o navegador encaixa em pixels
+       inteiros da tela: as 3 ficam com a mesma espessura em qualquer zoom */
+    will-change: transform;
     transition: var(--transition);
 }
 
@@ -454,12 +454,16 @@ main {
 /* Home */
 
 .home {
-    max-width: 100%;
     display: grid;
-    grid-template-columns: 1fr 440px;
-    padding-right: 80px;
+    grid-template-columns: 1.3fr 1fr;           /* texto é o protagonista */
     align-items: center;
-    min-height: calc(100vh - 80px);
+    gap: clamp(32px, 4vw, 96px);
+    /* ocupa a tela toda, descontando o margin-top de 92px do main */
+    min-height: calc(100vh - 92px);             /* fallback p/ navegadores antigos */
+    min-height: calc(100svh - 92px);
+    padding-block: clamp(40px, 4vw, 80px);
+    /* respiro lateral fluido; em monitores ultrawide segura o conteúdo em ~2160px */
+    padding-inline: max(clamp(40px, 5vw, 120px), calc((100% - 2160px) / 2));
     background-color: var(--cor-surface);
     color: var(--cor-on-surface);
 }
@@ -468,8 +472,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 26px;
-    padding: 60px 64px 60px 80px;
+    gap: clamp(26px, 2vw, 40px);
 }
 
 .home-eyebrow,
@@ -495,37 +498,45 @@ main {
 }
 
 .home-eyebrow {
-    font-size: 0.8rem;
+    font-size: clamp(0.8rem, 0.7vw, 1.05rem);
     font-weight: 500;
     text-transform: uppercase;
 }
 
 .home-titulo {
     font-family: var(--fonte-display);
-    font-size: 3.8rem;
+    /* acompanha a largura e a altura da tela, o que for menor */
+    font-size: clamp(2.6rem, min(4.4vw, 9vh), 7.5rem);
     font-weight: 900;
     line-height: 1.15;
     color: var(--cor-verde); 
-    max-width: 620px;
+    max-width: 11em;
     margin-top: -13px;
 }
 
 .home-desc {
     font-family: var(--fonte-ui);
-    font-size: 0.95rem;
+    font-size: clamp(0.95rem, 1.05vw, 1.6rem);
     color: var(--cor-on-surface-dim);
     line-height: 1.8;
-    max-width: 460px;
+    max-width: 36em;
 }
 
 .home-ctas {
     margin-top: 8px;
 }
 
+.home-ctas .cta {
+    font-size: clamp(0.8rem, 0.8vw, 1.1rem);
+    padding: clamp(16px, 1.1vw, 22px) clamp(32px, 2.2vw, 48px);
+}
+
 .home-foto-container {
     width: 100%;
     height: 100%;
-    max-width: 480px;
+    /* cresce com a coluna, mas nunca passa de ~60% da altura útil da tela */
+    max-width: calc((100vh - 92px) * 0.6 * 4 / 3);
+    max-width: calc((100svh - 92px) * 0.6 * 4 / 3);
     margin: 0 auto;
     padding: 32px 0;
     display: flex;
@@ -571,7 +582,7 @@ main {
 
 .sobre-texto h2 {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .sobre-texto p {
@@ -617,7 +628,7 @@ main {
 
 .produtos-header h2 {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .produtos-sub {
@@ -784,7 +795,7 @@ main {
 
 .visitacao-texto h2 {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .visitacao-texto p {
@@ -824,7 +835,7 @@ main {
 
 .localizacao-texto h2 {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 12px;
 }
 
@@ -901,7 +912,7 @@ main {
 
 .faq-header h2 {
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 600;
     margin-bottom: 16px;
 }
 
@@ -1019,40 +1030,15 @@ main {
 
 /* 9. Responsividade */
 
-@media (min-width: 1440px) {
-    .home-container {
-        max-width: 1560px;
-        grid-template-columns: 1fr 520px;
-        gap: 64px;
-    }
-
-    .home-titulo {
-        font-size: 3.1rem;
-        max-width: 660px;
-    }
-
-    .home-desc {
-        font-size: 1.05rem;
-        max-width: 540px;
-    }
-
-    .home-foto-container {
-        max-width: 520px;
-    }
-}
-
 @media (max-width: 1024px) {
     .home {
-        grid-template-columns: 1fr 360px;
-        padding-right: 48px;
-    }
-
-    .home-esquerda {
-        padding: 48px 40px 48px 48px;
+        grid-template-columns: 1fr 1fr;
+        min-height: auto;
+        padding: 64px 48px;
     }
 
     .home-titulo {
-        font-size: 2.2rem;
+        font-size: 2.6rem;
     }
 
     .sobre,
@@ -1106,22 +1092,23 @@ main {
 
     .home {
         grid-template-columns: 1fr;
+        min-height: auto;               /* no celular a altura vem do conteúdo */
         padding: 40px 32px;
-        text-align: left;
+        text-align: center;
         row-gap: 26px;
     }
 
     .home-esquerda {
-        padding: 0;
-        align-items: flex-start;
+        align-items: center;            /* centraliza eyebrow, título e subtítulo */
     }
 
     .home-foto-container {
+        max-width: 480px;
         padding: 0 0 20px 0;
     }
 
     .home-titulo {
-        font-size: 2.6rem;
+        font-size: 2.4rem;
         text-align: center;
     }
 
