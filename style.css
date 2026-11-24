@@ -22,20 +22,20 @@ ARQUITETURA CSS — FORROBODÓ
     --cor-verde-claro: #0F6B37;
     --cor-vinho-claro: #6E1414;
     --cor-surface: #F8FAF4;
-    --cor-surface-container: #F2F4EF;
-    --cor-cinza-claro: #E7E9E4;
+    --cor-surface-container: #EBEDE7;    /* fundo dos cards, um tom abaixo do fundo da página */
     --cor-on-surface: #000000;
     --cor-on-surface-dim: #000000;
     --cor-outline: #717970;
     --cor-branca: #FFFFFF;
     --cor-texto-claro: #F8FAF4;
     --cor-texto-claro-dim: rgba(248, 250, 244, 0.68);
-    --cor-faq-bg-hover: rgba(0, 66, 32, 0.06);
-    --cor-faq-bg-ativo: rgba(0, 66, 32, 0.11);
     --cor-faq-linha: rgba(25, 29, 25, 0.12);
 
     --fonte-display: 'Playfair Display', serif;
     --fonte-ui: 'DM Sans', Arial, sans-serif;
+
+    /* espaço vertical padrão das seções (em cima e embaixo) */
+    --espaco-secao: 72px;
 
     --radius-global: 16px;
     --radius-smooth: 8px;
@@ -112,6 +112,13 @@ button {
 h2 {
     font-family: var(--fonte-display);
     color: var(--cor-verde);
+    line-height: 1.35;
+}
+
+/* palavra principal do título: vai para a linha de baixo, em vinho */
+.destaque {
+    display: block;
+    color: var(--cor-vinho-claro);
 }
 
 /* 5. LAYOUT */
@@ -475,26 +482,12 @@ main {
     gap: clamp(26px, 2vw, 40px);
 }
 
-.home-eyebrow,
-.sobre-eyebrow,
-.produtos-eyebrow,
-.visitacao-eyebrow,
-.localizacao-eyebrow,
-.faq-eyebrow {
+.home-eyebrow {
     font-family: var(--fonte-ui);
     letter-spacing: 0.2em;
     color: var(--cor-vinho-claro);
     font-weight: 500;
     text-transform: uppercase;
-}
-
-.sobre-eyebrow,
-.produtos-eyebrow,
-.visitacao-eyebrow,
-.localizacao-eyebrow,
-.faq-eyebrow {
-    font-size: 0.78rem;          
-    margin-bottom: 0px;          
 }
 
 .home-eyebrow {
@@ -554,10 +547,10 @@ main {
 /* Sobre */
 
 .sobre {
-    background-color: var(--cor-cinza-claro);
+    background-color: var(--cor-surface);
     color: var(--cor-on-surface);
     max-width: 100%;
-    padding: 80px;
+    padding: var(--espaco-secao) 80px;
 }
 
 .sobre-conteudo {
@@ -573,11 +566,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.sobre-eyebrow {
-    font-weight: 500;
-    margin-bottom: -16px;
 }
 
 .sobre-texto h2 {
@@ -601,7 +589,7 @@ main {
 
 .sobre-foto {
     width: 100%;
-    aspect-ratio: 1000 / 667;
+    aspect-ratio: 1000 / 667;           /* formato original: em 4:3 o engenho fica cortado */
     object-fit: cover;
     border-radius: var(--radius-global);
 }
@@ -612,12 +600,12 @@ main {
     background-color: var(--cor-surface);
     color: var(--cor-on-surface);
     max-width: 100%;
-    padding: 0 0 80px;
+    padding: var(--espaco-secao) 0;
 }
 
 .produtos-header-bloco {
     width: 100%;
-    padding: 130px 80px 56px;
+    padding: 0 80px 56px;
 }
 
 .produtos-header {
@@ -654,13 +642,14 @@ main {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--shadow-sm);
+    /* sombra curta: contorno nítido, sem o "esfumaçado" em volta */
+    box-shadow: 0 1px 3px rgba(25, 29, 25, 0.06);
     transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .sabor-card-grid:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 20px rgba(25, 29, 25, 0.10);
 }
 
 .sabor-card-foto {
@@ -765,10 +754,10 @@ main {
 /* Visitação */
 
 .visitacao {
-    background-color: var(--cor-cinza-claro);
+    background-color: var(--cor-surface);
     color: var(--cor-on-surface);
     max-width: 100%;
-    padding: 100px 80px;
+    padding: var(--espaco-secao) 80px;
 }
 
 
@@ -786,11 +775,6 @@ main {
     flex-direction: column;
     gap: 18px;
     align-items: center;
-}
-
-.visitacao-eyebrow {
-    font-weight: 500;
-    margin-bottom: -14px;
 }
 
 .visitacao-texto h2 {
@@ -821,15 +805,15 @@ main {
     background-color: var(--cor-surface);
     color: var(--cor-on-surface);
     max-width: 100%;
-    padding: 130px 80px;
+    padding: var(--espaco-secao) 80px;
 }
 
 .localizacao-conteudo {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.1fr 1.2fr;
-    gap: 80px;
+    grid-template-columns: 1.2fr 1fr;    /* texto um pouco mais largo que o mapa */
+    gap: 56px;
     align-items: center;
 }
 
@@ -839,24 +823,26 @@ main {
     margin-bottom: 12px;
 }
 
-.localizacao-texto p {
+/* só o parágrafo de descrição (antes a regra pegava também os textos de endereço) */
+.localizacao-texto > p {
     font-family: var(--fonte-ui);
     font-size: 0.95rem;
     color: var(--cor-on-surface-dim);
     line-height: 1.8;
-    margin-bottom: 34px;
+    margin-bottom: 28px;
 }
 
 .localizacao-detalhes {
     display: flex;
     flex-direction: column;
-    margin-bottom: 8px;
+    gap: 16px;
+    margin-bottom: 32px;
 }
 
 .detalhe-item {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
 .detalhe-label {
@@ -870,6 +856,7 @@ main {
 
 .detalhe-info {
     font-size: 1rem;
+    line-height: 1.5;
 }
 
 .cta-como-chegar {
@@ -882,7 +869,7 @@ main {
 
 .localizacao-mapa-card {
     width: 100%;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 3 / 2;
     background-color: var(--cor-verde);
     overflow: hidden;
     border-radius: var(--radius-global);
@@ -901,7 +888,7 @@ main {
     background-color: var(--cor-surface);
     color: var(--cor-on-surface);
     max-width: 100%;
-    padding: 80px;
+    padding: var(--espaco-secao) 80px;
 }
 
 .faq-header {
@@ -933,15 +920,10 @@ main {
 
 .faq-item {
     border-bottom: 1px solid var(--cor-faq-linha);
-    transition: background-color var(--transition), border-color var(--transition);
-}
-
-.faq-item:hover {
-    background-color: var(--cor-faq-bg-hover);
+    transition: border-color var(--transition);
 }
 
 .faq-item.ativo {
-    background-color: var(--cor-faq-bg-ativo);
     border-color: rgba(25, 29, 25, 0.18);
 }
 
@@ -1031,6 +1013,10 @@ main {
 /* 9. Responsividade */
 
 @media (max-width: 1024px) {
+    :root {
+        --espaco-secao: 64px;
+    }
+
     .home {
         grid-template-columns: 1fr 1fr;
         min-height: auto;
@@ -1045,11 +1031,11 @@ main {
     .visitacao,
     .localizacao,
     .faq {
-        padding: 100px 48px;
+        padding: var(--espaco-secao) 48px;
     }
 
     .produtos-header-bloco {
-        padding: 100px 48px 40px;
+        padding: 0 48px 40px;
     }
 
     .produtos-grid {
@@ -1068,6 +1054,10 @@ main {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --espaco-secao: 56px;
+    }
+
     .header {
         height: 80px;
         padding: 0 16px;
@@ -1128,7 +1118,7 @@ main {
     .visitacao,
     .localizacao,
     .faq {
-        padding: 80px 32px;
+        padding: var(--espaco-secao) 32px;
     }
 
     .sobre-conteudo,
@@ -1145,17 +1135,12 @@ main {
         font-size: 1.9rem;
     }
 
-    .home-eyebrow,
-    .sobre-eyebrow,
-    .produtos-eyebrow,
-    .visitacao-eyebrow,
-    .localizacao-eyebrow,
-    .faq-eyebrow {
+    .home-eyebrow {
         font-size: 0.8rem;
     }
 
     .produtos-header-bloco {
-        padding: 50px 24px 32px;
+        padding: 0 24px 32px;
     }
 
     .produtos-grid {
